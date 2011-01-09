@@ -1,0 +1,15 @@
+C:\Users\et30956\git\SimpleCompression\SimpleCompression.YUICompression\SimpleCompression.YUICompressionTest\bin\Debug\SimpleCompression.YUICompressionTest.dll
+C:\Users\et30956\git\SimpleCompression\SimpleCompression.YUICompression\SimpleCompression.YUICompressionTest\bin\Debug\SimpleCompression.YUICompressionTest.pdb
+C:\Users\et30956\git\SimpleCompression\SimpleCompression.YUICompression\SimpleCompression.YUICompressionTest\bin\Debug\nunit.framework.dll
+C:\Users\et30956\git\SimpleCompression\SimpleCompression.YUICompression\SimpleCompression.YUICompressionTest\bin\Debug\Rhino.Mocks.dll
+C:\Users\et30956\git\SimpleCompression\SimpleCompression.YUICompression\SimpleCompression.YUICompressionTest\bin\Debug\SimpleCompression.dll
+C:\Users\et30956\git\SimpleCompression\SimpleCompression.YUICompression\SimpleCompression.YUICompressionTest\bin\Debug\SimpleCompression.YUICompression.dll
+C:\Users\et30956\git\SimpleCompression\SimpleCompression.YUICompression\SimpleCompression.YUICompressionTest\bin\Debug\Yahoo.Yui.Compressor.dll
+C:\Users\et30956\git\SimpleCompression\SimpleCompression.YUICompression\SimpleCompression.YUICompressionTest\bin\Debug\EcmaScript.NET.modified.dll
+C:\Users\et30956\git\SimpleCompression\SimpleCompression.YUICompression\SimpleCompression.YUICompressionTest\bin\Debug\SimpleCompression.pdb
+C:\Users\et30956\git\SimpleCompression\SimpleCompression.YUICompression\SimpleCompression.YUICompressionTest\bin\Debug\SimpleCompression.YUICompression.pdb
+C:\Users\et30956\git\SimpleCompression\SimpleCompression.YUICompression\SimpleCompression.YUICompressionTest\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\et30956\git\SimpleCompression\SimpleCompression.YUICompression\SimpleCompression.YUICompressionTest\obj\Debug\SimpleCompression.YUICompressionTest.dll
+C:\Users\et30956\git\SimpleCompression\SimpleCompression.YUICompression\SimpleCompression.YUICompressionTest\obj\Debug\SimpleCompression.YUICompressionTest.pdb
+C:\Users\et30956\git\SimpleCompression\SimpleCompression.YUICompression\SimpleCompression.YUICompressionTest\obj\Debug\Decl\SimpleCompression.YUICompressionTest.dll
+C:\Users\et30956\git\SimpleCompression\SimpleCompression.YUICompression\SimpleCompression.YUICompressionTest\obj\Debug\Decl\SimpleCompression.YUICompressionTest.pdb

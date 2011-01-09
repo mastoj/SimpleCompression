@@ -1,0 +1,14 @@
+C:\Users\et30956\git\SimpleCompression\SimpleCompressionTest\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\et30956\git\SimpleCompression\SimpleCompressionTest\bin\Debug\ExampleFiles\File1.js
+C:\Users\et30956\git\SimpleCompression\SimpleCompressionTest\bin\Debug\ExampleFiles\File2.js
+C:\Users\et30956\git\SimpleCompression\SimpleCompressionTest\bin\Debug\SimpleCompressionTest.dll
+C:\Users\et30956\git\SimpleCompression\SimpleCompressionTest\bin\Debug\SimpleCompressionTest.pdb
+C:\Users\et30956\git\SimpleCompression\SimpleCompressionTest\bin\Debug\nunit.framework.dll
+C:\Users\et30956\git\SimpleCompression\SimpleCompressionTest\bin\Debug\SimpleCompression.dll
+C:\Users\et30956\git\SimpleCompression\SimpleCompressionTest\bin\Debug\SimpleCompression.pdb
+C:\Users\et30956\git\SimpleCompression\SimpleCompressionTest\obj\x86\Debug\SimpleCompressionTest.dll
+C:\Users\et30956\git\SimpleCompression\SimpleCompressionTest\obj\x86\Debug\SimpleCompressionTest.pdb
+C:\Users\et30956\git\SimpleCompression\SimpleCompressionTest\obj\x86\Debug\Decl\SimpleCompressionTest.dll
+C:\Users\et30956\git\SimpleCompression\SimpleCompressionTest\obj\x86\Debug\Decl\SimpleCompressionTest.pdb
+C:\Users\et30956\git\SimpleCompression\SimpleCompressionTest\bin\Debug\Yahoo.Yui.Compressor.dll
+C:\Users\et30956\git\SimpleCompression\SimpleCompressionTest\bin\Debug\EcmaScript.NET.modified.dll

@@ -1,0 +1,12 @@
+C:\Users\et30956\git\SimpleCompression\SimpleCompression\SimpleCompression.YUICompression\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\et30956\git\SimpleCompression\SimpleCompression.YUICompression\bin\Debug\SimpleCompression.YUICompression.dll
+C:\Users\et30956\git\SimpleCompression\SimpleCompression.YUICompression\bin\Debug\SimpleCompression.YUICompression.pdb
+C:\Users\et30956\git\SimpleCompression\SimpleCompression.YUICompression\bin\Debug\EcmaScript.NET.modified.dll
+C:\Users\et30956\git\SimpleCompression\SimpleCompression.YUICompression\bin\Debug\SimpleCompression.dll
+C:\Users\et30956\git\SimpleCompression\SimpleCompression.YUICompression\bin\Debug\Yahoo.Yui.Compressor.dll
+C:\Users\et30956\git\SimpleCompression\SimpleCompression.YUICompression\bin\Debug\SimpleCompression.pdb
+C:\Users\et30956\git\SimpleCompression\SimpleCompression.YUICompression\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\et30956\git\SimpleCompression\SimpleCompression.YUICompression\obj\Debug\SimpleCompression.YUICompression.dll
+C:\Users\et30956\git\SimpleCompression\SimpleCompression.YUICompression\obj\Debug\SimpleCompression.YUICompression.pdb
+C:\Users\et30956\git\SimpleCompression\SimpleCompression.YUICompression\obj\Debug\Decl\SimpleCompression.YUICompression.dll
+C:\Users\et30956\git\SimpleCompression\SimpleCompression.YUICompression\obj\Debug\Decl\SimpleCompression.YUICompression.pdb

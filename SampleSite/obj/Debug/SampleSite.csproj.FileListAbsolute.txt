@@ -1,0 +1,7 @@
+C:\Users\et30956\git\SimpleCompression\SampleSite\bin\SampleSite.dll
+C:\Users\et30956\git\SimpleCompression\SampleSite\bin\SampleSite.pdb
+C:\Users\et30956\git\SimpleCompression\SampleSite\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\et30956\git\SimpleCompression\SampleSite\obj\Debug\SampleSite.dll
+C:\Users\et30956\git\SimpleCompression\SampleSite\obj\Debug\SampleSite.pdb
+C:\Users\et30956\git\SimpleCompression\SampleSite\obj\Debug\Decl\SampleSite.dll
+C:\Users\et30956\git\SimpleCompression\SampleSite\obj\Debug\Decl\SampleSite.pdb
