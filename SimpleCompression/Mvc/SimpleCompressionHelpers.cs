@@ -11,7 +11,7 @@ namespace SimpleCompression.Mvc
     {
         public static MvcHtmlString RegisterScript(this HtmlHelper helper, string file, string resourceGroup = "", int priority = 0, bool compress = true, bool ignore = false)
         {
-            if (ignore)
+            if (ignore || SimpleCompressionConfiguration.Disable)
             {
                 return helper.PrintRegularScriptTag(file);
             }
@@ -42,7 +42,7 @@ namespace SimpleCompression.Mvc
 
         public static MvcHtmlString RegisterCss(this HtmlHelper helper, string file, string resourceGroup = "", int priority = 0, bool compress = true, bool ignore = false)
         {
-            if (ignore)
+            if (ignore || SimpleCompressionConfiguration.Disable)
             {
                 return helper.PrintRegularCssTag(file);
             }

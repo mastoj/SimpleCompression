@@ -7,6 +7,19 @@ namespace SimpleCompression
 {
     public static class SimpleCompressionConfiguration
     {
+        private static bool disable = false;
+        public static bool Disable
+        {
+            get
+            {
+                return disable;
+            }
+            set
+            {
+                disable = value;
+            }
+        }
+
         private static ICompress compressorToUse;
         public static ICompress CompressorToUse
         {

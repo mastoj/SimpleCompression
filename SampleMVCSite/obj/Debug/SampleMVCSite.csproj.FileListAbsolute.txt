@@ -1,0 +1,11 @@
+C:\Users\et30956\git\SimpleCompression\SampleMVCSite\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\et30956\git\SimpleCompression\SampleMVCSite\bin\SampleMVCSite.dll
+C:\Users\et30956\git\SimpleCompression\SampleMVCSite\bin\SampleMVCSite.pdb
+C:\Users\et30956\git\SimpleCompression\SampleMVCSite\bin\SimpleCompression.dll
+C:\Users\et30956\git\SimpleCompression\SampleMVCSite\bin\Yahoo.Yui.Compressor.dll
+C:\Users\et30956\git\SimpleCompression\SampleMVCSite\bin\EcmaScript.NET.modified.dll
+C:\Users\et30956\git\SimpleCompression\SampleMVCSite\bin\SimpleCompression.pdb
+C:\Users\et30956\git\SimpleCompression\SampleMVCSite\obj\Debug\SampleMVCSite.dll
+C:\Users\et30956\git\SimpleCompression\SampleMVCSite\obj\Debug\SampleMVCSite.pdb
+C:\Users\et30956\git\SimpleCompression\SampleMVCSite\obj\Debug\Decl\SampleMVCSite.dll
+C:\Users\et30956\git\SimpleCompression\SampleMVCSite\obj\Debug\Decl\SampleMVCSite.pdb

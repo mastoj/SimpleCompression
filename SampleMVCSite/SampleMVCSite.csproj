@@ -110,7 +110,7 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SimpleCompression.csproj">
+    <ProjectReference Include="..\SimpleCompression\SimpleCompression.csproj">
       <Project>{56A1C7D1-BAC6-4C87-9002-B0DEBB57EAA5}</Project>
       <Name>SimpleCompression</Name>
     </ProjectReference>
