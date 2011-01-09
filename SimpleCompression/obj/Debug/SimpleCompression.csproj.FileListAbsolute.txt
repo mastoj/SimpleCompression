@@ -1,9 +1,0 @@
-C:\Users\et30956\git\SimpleCompression\SimpleCompression\obj\Debug\ResolveAssemblyReference.cache
-C:\Users\et30956\git\SimpleCompression\SimpleCompression\bin\Debug\SimpleCompression.dll
-C:\Users\et30956\git\SimpleCompression\SimpleCompression\bin\Debug\SimpleCompression.pdb
-C:\Users\et30956\git\SimpleCompression\SimpleCompression\bin\Debug\Yahoo.Yui.Compressor.dll
-C:\Users\et30956\git\SimpleCompression\SimpleCompression\bin\Debug\EcmaScript.NET.modified.dll
-C:\Users\et30956\git\SimpleCompression\SimpleCompression\obj\Debug\SimpleCompression.dll
-C:\Users\et30956\git\SimpleCompression\SimpleCompression\obj\Debug\SimpleCompression.pdb
-C:\Users\et30956\git\SimpleCompression\SimpleCompression\obj\Debug\Decl\SimpleCompression.dll
-C:\Users\et30956\git\SimpleCompression\SimpleCompression\obj\Debug\Decl\SimpleCompression.pdb
