@@ -52,6 +52,7 @@
     <Compile Include="ResourceManager.cs" />
     <Compile Include="ICompress.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Web\TagHelper.cs" />
     <Compile Include="YUICompression.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

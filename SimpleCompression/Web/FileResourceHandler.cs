@@ -12,8 +12,6 @@ namespace SimpleCompression.Web
 {
     public class FileResourceHandler : IHttpHandler
     {
-//        public FileResourceHandler(RequestContext requestContext) : base(requestContext) {}
-
         public bool IsReusable
         {
             get { return false; }
@@ -25,16 +23,9 @@ namespace SimpleCompression.Web
 
             string filePath = context.Request.RawUrl;
             string fileName = Path.GetFileName(context.Request.RawUrl);
-            string fileExt = Path.GetExtension(fileName);
-            bool isCssFile = false;
-            if (fileExt.Equals(".css"))
-            {
-                isCssFile = true;
-            }
-            context.Response.ContentType = isCssFile ? "text/css" : "text/javascript";
-
-            string cacheKey = fileName;
-            List<FileResource> files = ResourceManager.Instance.GetResourcesFromCache(cacheKey);
+            ResourceType resourceType = GetResourceTypeFromFileName(fileName);
+            context.Response.ContentType = resourceType == ResourceType.Css ? "text/css" : "text/javascript";
+            List<FileResource> files = ResourceManager.Instance.GetResourcesFromCache(fileName);
 
             if (files == null || files.Count == 0)
             {
@@ -42,22 +33,41 @@ namespace SimpleCompression.Web
                 return;
             }
 
-            List<string> allFiles = new List<string>();
-            // Build return string
             StringBuilder sb = new StringBuilder();
-            ICompress compressor = new YUICompression();
-            foreach (FileResource fileResource in files)
+            ICompress compressor = SimpleCompressionConfiguration.CompressorToUse;
+            Func<string, string> compressFunction = resourceType == ResourceType.Css ? (Func<string, string>)compressor.CompressCssString :
+                (Func<string, string>)compressor.CompressJavascriptString;
+
+            List<string> addedFiles = AddResponseToBuffer(context, sb, compressor, compressFunction, files);
+            AddCacheDependecy(context, addedFiles);
+            string output = sb.ToString();
+            context.Response.Write(output);
+        }
+
+        private ResourceType GetResourceTypeFromFileName(string fileName)
+        {
+            string fileExt = Path.GetExtension(fileName);
+            switch(fileExt.ToLower())
+            {
+                case ".css": return ResourceType.Css;
+                case ".js": return ResourceType.javascript;
+                default: throw new ArgumentException("Uknown file type: " + fileName);
+            }
+        }
+
+        private List<string> AddResponseToBuffer(HttpContext context, StringBuilder sb, ICompress compressor, Func<string, string> compressFunction, List<FileResource> files)
+        {
+            var addedFiles = new List<string>();
+            foreach (FileResource fileResource in files.OrderByDescending(y => y.Priority))
             {
                 string file = fileResource.FilePath;
 
                 file = context.Server.MapPath(file);
-                allFiles.Add(file);
+                addedFiles.Add(file);
                 using (StreamReader input = new StreamReader(file))
                 {
                     if (fileResource.Compress)
                     {
-                        Func<string, string> compressFunction = isCssFile ? (Func<string, string>)compressor.CompressCssString : 
-                            (Func<string, string>)compressor.CompressJavascriptString;
                         sb.Append(compressFunction(input.ReadToEnd()));
                     }
                     else
@@ -66,13 +76,15 @@ namespace SimpleCompression.Web
                     }
                 }
             }
+            return addedFiles;
+        }
 
+        private void AddCacheDependecy(HttpContext context, List<string> allFiles)
+        {
             context.Response.Cache.SetCacheability(HttpCacheability.Public);
             context.Response.AddFileDependencies(allFiles.ToArray());
             context.Response.Cache.SetETagFromFileDependencies();
             context.Response.Cache.SetLastModifiedFromFileDependencies();
-            string output = sb.ToString();
-            context.Response.Write(output);
         }
     }
 }
