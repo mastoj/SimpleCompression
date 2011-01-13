@@ -37,7 +37,7 @@ namespace SimpleCompression.Mvc
         {
             if (ignore || SimpleCompressionConfiguration.Disable)
             {
-                return helper.PrintTag(file, TagHelper.PrintCssTag);
+                return helper.PrintTag(file, printTagFunction);
             }
             var fileResource = new FileResource() { FilePath = file, Priority = priority, Compress = compress };
             registerResourceFunction(fileResource, resourceGroup);
