@@ -1,13 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleCompression", "SimpleCompression.csproj", "{56A1C7D1-BAC6-4C87-9002-B0DEBB57EAA5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleCompression", "SimpleCompression\SimpleCompression.csproj", "{56A1C7D1-BAC6-4C87-9002-B0DEBB57EAA5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleCompressionTest", "..\SimpleCompressionTest\SimpleCompressionTest.csproj", "{43DDB99B-E13B-4A89-B1F5-418A58F497DF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleCompressionTest", "SimpleCompressionTest\SimpleCompressionTest.csproj", "{43DDB99B-E13B-4A89-B1F5-418A58F497DF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{BDC5F910-7C2D-4E7C-A453-E105B5D3C1D8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleMVCSite", "..\SampleMVCSite\SampleMVCSite.csproj", "{139EB9FB-C593-4EDB-8D96-C519C84261DB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleMVCSite", "SampleMVCSite\SampleMVCSite.csproj", "{139EB9FB-C593-4EDB-8D96-C519C84261DB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
