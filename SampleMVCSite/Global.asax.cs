@@ -33,8 +33,8 @@ namespace SampleMVCSite
 
         protected void Application_Start()
         {
-            SimpleCompressionConfiguration.ClientVersionPrefix = "Ver1";
-            SimpleCompressionConfiguration.FolderForCachedResources = "SuperCache";
+            SimpleCompressionConfiguration.DefaulConfiguration.ClientVersionPrefix = "Ver2";
+            SimpleCompressionConfiguration.DefaulConfiguration.FolderForCachedResources = "SuperCache";
 
             AreaRegistration.RegisterAllAreas();
 

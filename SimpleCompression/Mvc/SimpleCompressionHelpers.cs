@@ -10,58 +10,64 @@ namespace SimpleCompression.Mvc
 {
     public static class SimpleCompressionHelpers
     {
-        public static MvcHtmlString RegisterScript(this HtmlHelper helper, string file, string resourceGroup = "", int priority = 0, bool compress = true, bool ignore = false)
+        public static MvcHtmlString RegisterScripts(this HtmlHelper helper, SimpleCompressionConfiguration configuration = null, params string[] files)
         {
-            return helper.RegisterResource(file, resourceGroup, priority, compress, ignore, TagHelper.PrintJavascriptTag, ResourceManager.Instance.RegisterJavascriptFile);
+            return helper.RegisterResources(configuration, files, ResourceType.Javascript);
         }
 
-        public static MvcHtmlString CreateScriptTags(this HtmlHelper helper)
+        public static MvcHtmlString RegisterCssFiles(this HtmlHelper helper, SimpleCompressionConfiguration configuration = null, params string[] files)
         {
-            var tagString = ResourceManager.Instance.PrintScriptTags();
-            return new MvcHtmlString(tagString);
+            return helper.RegisterResources(configuration, files, ResourceType.Css);
         }
 
-        public static MvcHtmlString CreateScriptTags(this HtmlHelper helper, string resourceGroup)
+        private static MvcHtmlString RegisterResources(this HtmlHelper helper, SimpleCompressionConfiguration configuration, string[] files, ResourceType resourceType)
         {
-            var tagString = ResourceManager.Instance.PrintScriptTagForResourceGroup(resourceGroup);
-            return new MvcHtmlString(tagString);
-        }
+            configuration = configuration ?? SimpleCompressionConfiguration.DefaulConfiguration;
 
-        public static MvcHtmlString RegisterCss(this HtmlHelper helper, string file, string resourceGroup = "", int priority = 0, bool compress = true, bool ignore = false)
-        {
-            return helper.RegisterResource(file, resourceGroup, priority, compress, ignore, TagHelper.PrintCssTag, ResourceManager.Instance.RegisterCssFile);
-        }
+            Func<string, string> printFunc = resourceType == ResourceType.Css
+                                                 ? (Func<string,string>)TagHelper.PrintCssTag
+                                                 : TagHelper.PrintJavascriptTag;
 
-        private static MvcHtmlString RegisterResource(this HtmlHelper helper, string file, string resourceGroup, int priority, bool compress, bool ignore, 
-            Func<string, string> printTagFunction, Action<FileResource, string> registerResourceFunction)
-        {
-            if (ignore || SimpleCompressionConfiguration.Disable)
+            string tagString = string.Empty;
+            if (configuration.Disable)
             {
-                return helper.PrintTag(file, printTagFunction);
+                foreach (var file in files)
+                {
+                    tagString += helper.PrintTag(file, printFunc);
+                }
             }
-            var fileResource = new FileResource() { FilePath = file, Priority = priority, Compress = compress };
-            registerResourceFunction(fileResource, resourceGroup);
-            return new MvcHtmlString(string.Empty);        
+            else
+            {
+
+                var fileResources = CreateResources(files, configuration);
+
+                var hashCode = fileResources.GetHashCode();
+                string extension = resourceType == ResourceType.Css ? ".css" : ".js";
+                string fileName = configuration.ClientVersionPrefix + hashCode + extension;
+                string filePath = configuration.FolderForCachedResources + fileName;
+                ResourceCacheManager.Instance.AddResourcesToCache(fileName, new Tuple<List<FileResource>, SimpleCompressionConfiguration>(fileResources, configuration));
+                tagString = helper.PrintTag(filePath, printFunc);
+            }
+            return new MvcHtmlString(tagString);            
         }
 
-        private static MvcHtmlString PrintTag(this HtmlHelper helper, string file, Func<string, string> printTagFunction)
+        private static List<FileResource> CreateResources(string[] files, SimpleCompressionConfiguration configuration)
         {
-            var urlHelper = new UrlHelper(helper.ViewContext.RequestContext);
-            var fileName = urlHelper.Content(file);
-            var tag = printTagFunction(fileName);
-            return new MvcHtmlString(tag);
+            var resources = new List<FileResource>();
+            foreach (var file in files)
+            {
+                var resource = new FileResource(file);
+                resources.Add(resource);
+            }
+            return resources;
         }
 
-        public static MvcHtmlString CreateCssTags(this HtmlHelper helper, string resourceGroup)
+        private static string PrintTag(this HtmlHelper helper, string file, Func<string, string> printTagFunction)
         {
-            var tagString = ResourceManager.Instance.PrintCssTagForResourceGroup(resourceGroup);
-            return new MvcHtmlString(tagString);
-        }
-
-        public static MvcHtmlString CreateCssTags(this HtmlHelper helper)
-        {
-            var tagString = ResourceManager.Instance.PrintCssTags();
-            return new MvcHtmlString(tagString);
+            var urlHelper = new UrlHelper(helper.ViewContext.RequestContext); 
+            var fileName = urlHelper.Content(file); 
+            var tag = printTagFunction(fileName); 
+            return tag;
         }
     }
 }

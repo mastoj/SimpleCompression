@@ -5,70 +5,99 @@ using System.Text;
 
 namespace SimpleCompression
 {
-    public static class SimpleCompressionConfiguration
+    public class SimpleCompressionConfiguration
     {
-        private static bool disable = false;
-        public static bool Disable
+        private static SimpleCompressionConfiguration _defaultConfiguration;
+        public static SimpleCompressionConfiguration DefaulConfiguration
         {
             get
             {
-                return disable;
-            }
-            set
-            {
-                disable = value;
+                _defaultConfiguration = _defaultConfiguration ?? new SimpleCompressionConfiguration();
+                return _defaultConfiguration;
             }
         }
 
-        private static ICompress compressorToUse;
-        public static ICompress CompressorToUse
+
+        private bool _disable = false;
+        public bool Disable
         {
             get
             {
-                if (compressorToUse == null)
-                    compressorToUse = new YUICompression();
-                return compressorToUse;
+                return _disable;
             }
             set
             {
-                compressorToUse = value;
+                _disable = value;
             }
         }
 
-        private static string folderForCachedResources;
-        public static string FolderForCachedResources
+        private ICompress _compressor;
+        public ICompress Compressor
         {
             get
             {
-                if (string.IsNullOrEmpty(folderForCachedResources))
+                if (_compressor == null)
+                    _compressor = new YUICompression();
+                return _compressor;
+            }
+            set
+            {
+                _compressor = value;
+            }
+        }
+
+        private string _folderForCachedResources;
+        public string FolderForCachedResources
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(_folderForCachedResources))
                 {
-                    folderForCachedResources = "/cache/";
+                    _folderForCachedResources = "/cache/";
                 }
-                return folderForCachedResources;
+                return _folderForCachedResources;
             }
             set
             {
                 if (value.EndsWith("/") == false)
                     value += "/";
-                folderForCachedResources = value;
+                _folderForCachedResources = value;
             }
         }
 
-        private static string clientVersionPrefix;
-        public static string ClientVersionPrefix
+        private string _clientVersionPrefix;
+        public string ClientVersionPrefix
         {
             get
             {
-                if (clientVersionPrefix == null)
+                if (_clientVersionPrefix == null)
                 {
-                    clientVersionPrefix = string.Empty;
+                    _clientVersionPrefix = string.Empty;
                 }
-                return clientVersionPrefix;
+                return _clientVersionPrefix;
             }
             set
             {
-                clientVersionPrefix = value;
+                _clientVersionPrefix = value;
             }
+        }
+
+        private bool _ignore = false;
+        public bool Ignore
+        {
+            get {
+                return _ignore;
+            }
+            set {
+                _ignore = value;
+            }
+        }
+
+        private bool _compress = true;
+        public bool Compress
+        {
+            get { return _compress; }
+            set { _compress = value; }
         }
     }
 }

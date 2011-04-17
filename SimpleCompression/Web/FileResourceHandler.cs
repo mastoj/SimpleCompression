@@ -25,20 +25,25 @@ namespace SimpleCompression.Web
             string fileName = Path.GetFileName(context.Request.RawUrl);
             ResourceType resourceType = GetResourceTypeFromFileName(fileName);
             context.Response.ContentType = resourceType == ResourceType.Css ? "text/css" : "text/javascript";
-            List<FileResource> files = ResourceManager.Instance.GetResourcesFromCache(fileName);
+            var cachedItem = ResourceCacheManager.Instance.GetResourcesFromCache(fileName);
 
-            if (files == null || files.Count == 0)
+            if (cachedItem == null)
+            {
+                context.Response.StatusCode = (int)HttpStatusCode.NotFound;
+                return;
+            }
+
+            var configuration = cachedItem.Item2;
+            List<FileResource> files = cachedItem.Item1;
+            if(files == null || files.Count == 0)
             {
                 context.Response.StatusCode = (int)HttpStatusCode.NotFound;
                 return;
             }
 
             StringBuilder sb = new StringBuilder();
-            ICompress compressor = SimpleCompressionConfiguration.CompressorToUse;
-            Func<string, string> compressFunction = resourceType == ResourceType.Css ? (Func<string, string>)compressor.CompressCssString :
-                (Func<string, string>)compressor.CompressJavascriptString;
 
-            List<string> addedFiles = AddResponseToBuffer(context, sb, compressor, compressFunction, files);
+            List<string> addedFiles = AddResponseToBuffer(context, sb, configuration, resourceType, files);
             AddCacheDependecy(context, addedFiles);
             string output = sb.ToString();
             context.Response.Write(output);
@@ -50,15 +55,19 @@ namespace SimpleCompression.Web
             switch(fileExt.ToLower())
             {
                 case ".css": return ResourceType.Css;
-                case ".js": return ResourceType.javascript;
+                case ".js": return ResourceType.Javascript;
                 default: throw new ArgumentException("Uknown file type: " + fileName);
             }
         }
 
-        private List<string> AddResponseToBuffer(HttpContext context, StringBuilder sb, ICompress compressor, Func<string, string> compressFunction, List<FileResource> files)
+        private List<string> AddResponseToBuffer(HttpContext context, StringBuilder sb, SimpleCompressionConfiguration configuration, ResourceType resourceType, List<FileResource> files)
         {
+            ICompress compressor = configuration.Compressor;
+            Func<string, string> compressFunction = resourceType == ResourceType.Css ? (Func<string, string>)compressor.CompressCssString :
+                compressor.CompressJavascriptString;
+
             var addedFiles = new List<string>();
-            foreach (FileResource fileResource in files.OrderByDescending(y => y.Priority))
+            foreach (FileResource fileResource in files)
             {
                 string file = fileResource.FilePath;
 
@@ -66,7 +75,7 @@ namespace SimpleCompression.Web
                 addedFiles.Add(file);
                 using (StreamReader input = new StreamReader(file))
                 {
-                    if (fileResource.Compress)
+                    if (configuration.Compress)
                     {
                         sb.Append(compressFunction(input.ReadToEnd()));
                     }
