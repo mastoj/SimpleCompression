@@ -5,7 +5,7 @@
     <version>$version$</version>
     <authors>Tomas Jansson</authors>
     <owners>Tomas Jansson</owners>
-    <licenseUrl>https://github.com/mastoj/SimpleCompression/blob/master/SimpleCompression/content/license.txt</licenseUrl>
+    <licenseUrl>https://github.com/mastoj/SimpleCompression/blob/master/SimpleCompression/license.txt</licenseUrl>
     <projectUrl>https://github.com/mastoj/SimpleCompression</projectUrl>
     <iconUrl>https://github.com/mastoj/SimpleCompression/raw/master/SimpleCompression/SimpleCompression_icon.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
