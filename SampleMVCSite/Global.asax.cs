@@ -4,7 +4,6 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
-using SimpleCompression;
 
 namespace SampleMVCSite
 {
@@ -22,7 +21,8 @@ namespace SampleMVCSite
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            routes.Add(new Route("SuperCache/{*catchall}", new SimpleCompression.Routing.SimpleCompressionRouteHandler()));
+            //routes.Add(new Route("SuperCache/{*catchall}", new SimpleCompression.Routing.SimpleCompressionRouteHandler()));
+            //routes.Add(new Route("cache/{*catchall}", new SimpleCompression.Routing.SimpleCompressionRouteHandler()));
             routes.MapRoute(
                 "Default", // Route name
                 "{controller}/{action}/{id}", // URL with parameters
@@ -33,8 +33,8 @@ namespace SampleMVCSite
 
         protected void Application_Start()
         {
-            SimpleCompressionConfiguration.DefaulConfiguration.ClientVersionPrefix = "Ver2";
-            SimpleCompressionConfiguration.DefaulConfiguration.FolderForCachedResources = "SuperCache";
+            //SimpleCompressionConfiguration.DefaulConfiguration.ClientVersionPrefix = "Ver2";
+            //SimpleCompressionConfiguration.DefaulConfiguration.FolderForCachedResources = "SuperCache";
 
             AreaRegistration.RegisterAllAreas();
 

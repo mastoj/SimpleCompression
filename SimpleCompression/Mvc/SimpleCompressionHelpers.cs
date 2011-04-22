@@ -10,12 +10,22 @@ namespace SimpleCompression.Mvc
 {
     public static class SimpleCompressionHelpers
     {
-        public static MvcHtmlString RegisterScripts(this HtmlHelper helper, SimpleCompressionConfiguration configuration = null, params string[] files)
+        public static MvcHtmlString RegisterScripts(this HtmlHelper helper, params string[] files)
+        {
+            return helper.RegisterScripts(null, files);
+        }
+
+        public static MvcHtmlString RegisterCssFiles(this HtmlHelper helper, params string[] files)
+        {
+            return helper.RegisterCssFiles(null, files);
+        }
+
+        public static MvcHtmlString RegisterScripts(this HtmlHelper helper, SimpleCompressionConfiguration configuration, params string[] files)
         {
             return helper.RegisterResources(configuration, files, ResourceType.Javascript);
         }
 
-        public static MvcHtmlString RegisterCssFiles(this HtmlHelper helper, SimpleCompressionConfiguration configuration = null, params string[] files)
+        public static MvcHtmlString RegisterCssFiles(this HtmlHelper helper, SimpleCompressionConfiguration configuration, params string[] files)
         {
             return helper.RegisterResources(configuration, files, ResourceType.Css);
         }

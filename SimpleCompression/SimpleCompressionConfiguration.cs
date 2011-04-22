@@ -17,6 +17,16 @@ namespace SimpleCompression
             }
         }
 
+        public SimpleCompressionConfiguration()
+        {
+            if (_defaultConfiguration != null)
+            {
+                Disable = _defaultConfiguration.Disable;
+                Compressor = _defaultConfiguration.Compressor;
+                FolderForCachedResources = _defaultConfiguration.FolderForCachedResources;
+                Compress = DefaulConfiguration.Compress;
+            }
+        }
 
         private bool _disable = false;
         public bool Disable
@@ -53,7 +63,7 @@ namespace SimpleCompression
             {
                 if (string.IsNullOrEmpty(_folderForCachedResources))
                 {
-                    _folderForCachedResources = "/cache/";
+                    _folderForCachedResources = "cache/";
                 }
                 return _folderForCachedResources;
             }
@@ -82,22 +92,16 @@ namespace SimpleCompression
             }
         }
 
-        private bool _ignore = false;
-        public bool Ignore
-        {
-            get {
-                return _ignore;
-            }
-            set {
-                _ignore = value;
-            }
-        }
-
         private bool _compress = true;
         public bool Compress
         {
             get { return _compress; }
             set { _compress = value; }
+        }
+
+        public static void SetDefaultConfiguration(SimpleCompressionConfiguration defaultConfig)
+        {
+            _defaultConfiguration = defaultConfig;
         }
     }
 }

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>SimpleCompression</id>
+    <version>1.0</version>
+    <authors>Tomas Jansson</authors>
+    <owners>Tomas Jansson</owners>
+    <licenseUrl>http://LICENSE_URL_HERE_OR_DELETE_THIS_LINE</licenseUrl>
+    <projectUrl>https://github.com/mastoj/SimpleCompression</projectUrl>
+    <iconUrl>http://ICON_URL_HERE_OR_DELETE_THIS_LINE</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Compress and combine engine for ASP.NET MVC</description>
+    <tags>ASP.NET MVC3 Compression javascript css</tags>
+    <dependencies>
+      <dependency id="YUICompressor.NET" version="1.5.0.0" />
+      <dependency id="WebActivator" version="1.4.1" />
+    </dependencies>
+  </metadata>
+</package>

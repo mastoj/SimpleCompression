@@ -3,8 +3,8 @@
 <html>
 <head>
     <title>@ViewBag.Title</title>
-    @Html.RegisterCssFiles(null, "~/Content/Site.css")
-    @Html.RegisterScripts(null, "~/Scripts/jquery-1.4.4.js", 
+    @Html.RegisterCssFiles(new SimpleCompression.SimpleCompressionConfiguration() { Compress = false, ClientVersionPrefix = "ver3"}, "~/Content/Site.css")
+    @Html.RegisterScripts("~/Scripts/jquery-1.4.4.js", 
                             "~/Scripts/jquery-ui.js")
 @*    <script src="@Url.Content("~/Scripts/jquery-1.4.4.js")" type="text/javascript"></script>
     <script src="@Url.Content("~/Scripts/jquery-ui.js")" type="text/javascript"></script>

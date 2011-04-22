@@ -43,6 +43,9 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="WebActivator">
+      <HintPath>..\packages\WebActivator.1.4.1\lib\net40\WebActivator.dll</HintPath>
+    </Reference>
     <Reference Include="Yahoo.Yui.Compressor, Version=1.5.0.0, Culture=neutral, PublicKeyToken=f8b4b81ec75097e2, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\YUICompressor.NET.1.5.0.0\lib\NET35\Yahoo.Yui.Compressor.dll</HintPath>
@@ -51,6 +54,7 @@
   <ItemGroup>
     <Compile Include="FileResource.cs" />
     <Compile Include="ResourceType.cs" />
+    <Content Include="content\license.txt" />
     <Compile Include="Routing\SimpleCompressionRouteHandler.cs" />
     <Compile Include="SimpleCompressionConfiguration.cs" />
     <Compile Include="Web\FileResourceHandler.cs" />
@@ -62,6 +66,7 @@
     <Compile Include="YUICompression.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="content\App_Start\SimpleCompression.cs.pp" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
