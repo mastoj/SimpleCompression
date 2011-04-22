@@ -7,13 +7,12 @@
     <owners>Tomas Jansson</owners>
     <licenseUrl>https://github.com/mastoj/SimpleCompression/blob/master/SimpleCompression/content/license.txt</licenseUrl>
     <projectUrl>https://github.com/mastoj/SimpleCompression</projectUrl>
-    <iconUrl>http://ICON_URL_HERE_OR_DELETE_THIS_LINE</iconUrl>
+    <iconUrl>https://github.com/mastoj/SimpleCompression/raw/master/SimpleCompression/SimpleCompression_icon.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <tags>ASP.NET MVC3 Compression javascript css</tags>
   </metadata>
   <files>
 	<file src="content\App_Start\*.*" target="content\App_Start" />
-	<file src="content\*.*" />
   </files>
 </package>
