@@ -54,7 +54,9 @@
   <ItemGroup>
     <Compile Include="FileResource.cs" />
     <Compile Include="ResourceType.cs" />
-    <Content Include="content\license.txt" />
+    <Content Include="license.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Compile Include="Routing\SimpleCompressionRouteHandler.cs" />
     <Compile Include="SimpleCompressionConfiguration.cs" />
     <Compile Include="Web\FileResourceHandler.cs" />
