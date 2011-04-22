@@ -39,4 +39,4 @@ deploy
 deploy/*
 
 # Ignoring NuGet packages for this project
-/*.nupkg
+*/*.nupkg
