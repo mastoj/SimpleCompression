@@ -44,8 +44,8 @@
       <HintPath>..\packages\Glimpse.Mvc3.0.82\lib\net40\Glimpse.Mvc3.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="SimpleCompression, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\SimpleCompression.1.0\lib\net40\SimpleCompression.dll</HintPath>
+    <Reference Include="SimpleCompression, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SimpleCompression.1.2\lib\net40\SimpleCompression.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Web.WebPages" />
@@ -89,8 +89,8 @@
     <Content Include="App_Readme\glimpse.mvc3.readme.txt" />
     <Content Include="App_Readme\glimpse.readme.txt" />
     <Content Include="cache\js_29351692.js" />
-    <Content Include="Content\license.txt" />
     <Content Include="Global.asax" />
+    <Content Include="license.txt" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
