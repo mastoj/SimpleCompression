@@ -25,7 +25,7 @@ namespace $rootnamespace$.App_Start
 
         private static void AddRoutes(RouteCollection routes, SimpleCompressionConfiguration configuration)
         {
-            routes.Add(new Route(configuration.FolderForCachedResources + "{*catchall}", new SimpleCompressionRouteHandler()));
+            routes.Add(new Route(configuration.FolderForCachedResources + "{file}", new SimpleCompressionRouteHandler()));
         }
     }
 }
