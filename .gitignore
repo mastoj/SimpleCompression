@@ -18,6 +18,7 @@ bin
 *resharper*
 *.suo
 *.cache
+*.docstates
 * Thumbs.db
 
 # Other useful stuff
