@@ -53,7 +53,7 @@ namespace SimpleCompression.Mvc
 
                 var hashCode = fileResources.GetHashCode();
                 string extension = resourceType == ResourceType.Css ? ".css" : ".js";
-                string fileName = configuration.ClientVersionPrefix + hashCode + extension;
+                string fileName = configuration.ClientVersionPrefix + "_" + hashCode + extension;
                 string filePath = configuration.FolderForCachedResources + fileName;
                 ResourceCacheManager.Instance.AddResourcesToCache(fileName, new Tuple<List<FileResource>, SimpleCompressionConfiguration>(fileResources, configuration));
                 tagString = helper.PrintTag(filePath, printFunc);
@@ -61,9 +61,9 @@ namespace SimpleCompression.Mvc
             return new MvcHtmlString(tagString);            
         }
 
-        private static List<FileResource> CreateResources(string[] files, SimpleCompressionConfiguration configuration)
+        private static FileResourceCollection CreateResources(string[] files, SimpleCompressionConfiguration configuration)
         {
-            var resources = new List<FileResource>();
+            var resources = new FileResourceCollection();
             foreach (var file in files)
             {
                 var resource = new FileResource(file);

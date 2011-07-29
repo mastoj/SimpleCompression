@@ -53,6 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FileResource.cs" />
+    <Compile Include="FileResourceCollection.cs" />
     <Compile Include="ResourceType.cs" />
     <Compile Include="Routing\SimpleCompressionRouteHandler.cs" />
     <Compile Include="SimpleCompressionConfiguration.cs" />

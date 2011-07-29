@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Web;
 using System.Net;
 using System.IO;
+using System.Web.Caching;
 using System.Web.Routing;
 using System.Web.Mvc;
 
@@ -19,34 +21,70 @@ namespace SimpleCompression.Web
 
         public void ProcessRequest(HttpContext context)
         {
-            context.Response.StatusCode = (int)HttpStatusCode.OK;
-
-            string filePath = context.Request.RawUrl;
             string fileName = Path.GetFileName(context.Request.RawUrl);
+            context.Response.StatusCode = (int)HttpStatusCode.OK;
+            context.Response.Cache.SetCacheability(HttpCacheability.Public);
+            context.Response.Cache.SetExpires(Cache.NoAbsoluteExpiration);
             ResourceType resourceType = GetResourceTypeFromFileName(fileName);
             context.Response.ContentType = resourceType == ResourceType.Css ? "text/css" : "text/javascript";
-            var cachedItem = ResourceCacheManager.Instance.GetResourcesFromCache(fileName);
 
-            if (cachedItem == null)
+            if (!WriteFromCache(context, fileName))
             {
-                context.Response.StatusCode = (int)HttpStatusCode.NotFound;
-                return;
-            }
+                var cachedItem = ResourceCacheManager.Instance.GetResourcesFromCache(fileName);
 
-            var configuration = cachedItem.Item2;
-            List<FileResource> files = cachedItem.Item1;
-            if(files == null || files.Count == 0)
+                if (cachedItem == null)
+                {
+                    context.Response.StatusCode = (int) HttpStatusCode.NotFound;
+                    return;
+                }
+
+                var configuration = cachedItem.Item2;
+                List<FileResource> files = cachedItem.Item1;
+                if (files == null || files.Count == 0)
+                {
+                    context.Response.StatusCode = (int) HttpStatusCode.NotFound;
+                    return;
+                }
+
+                StringBuilder sb = new StringBuilder();
+
+                List<string> addedFiles = AddResponseToBuffer(context, sb, configuration, resourceType, files);
+                string output = CompressResponse(sb, configuration, resourceType);
+                AddToCache(context, fileName, output);
+                context.Response.Write(output);
+            }
+        }
+
+        private string CompressResponse(StringBuilder sb, SimpleCompressionConfiguration configuration, ResourceType resourceType)
+        {
+            if (configuration.Compress)
             {
-                context.Response.StatusCode = (int)HttpStatusCode.NotFound;
-                return;
+                ICompress compressor = configuration.Compressor;
+                Func<string, string> compressFunction = resourceType == ResourceType.Css
+                                                            ? (Func<string, string>) compressor.CompressCssString
+                                                            : compressor.CompressJavascriptString;
+                return compressFunction(sb.ToString());
             }
+            else
+            {
+                return sb.ToString();
+            }
+        }
 
-            StringBuilder sb = new StringBuilder();
+        private bool WriteFromCache(HttpContext context, string fileName)
+        {
+            var output = ResourceCacheManager.Instance.GetFileFromCache(fileName);
+            if (!string.IsNullOrEmpty(output))
+            {
+                context.Response.Write(output);
+                return true;
+            }
+            return false;
+        }
 
-            List<string> addedFiles = AddResponseToBuffer(context, sb, configuration, resourceType, files);
-            AddCacheDependecy(context, addedFiles);
-            string output = sb.ToString();
-            context.Response.Write(output);
+        private void AddToCache(HttpContext context, string fileName, string content)
+        {
+            ResourceCacheManager.Instance.AddFileToCache(fileName, content);
         }
 
         private ResourceType GetResourceTypeFromFileName(string fileName)
@@ -62,10 +100,6 @@ namespace SimpleCompression.Web
 
         private List<string> AddResponseToBuffer(HttpContext context, StringBuilder sb, SimpleCompressionConfiguration configuration, ResourceType resourceType, List<FileResource> files)
         {
-            ICompress compressor = configuration.Compressor;
-            Func<string, string> compressFunction = resourceType == ResourceType.Css ? (Func<string, string>)compressor.CompressCssString :
-                compressor.CompressJavascriptString;
-
             var addedFiles = new List<string>();
             foreach (FileResource fileResource in files)
             {
@@ -75,14 +109,7 @@ namespace SimpleCompression.Web
                 addedFiles.Add(file);
                 using (StreamReader input = new StreamReader(file))
                 {
-                    if (configuration.Compress)
-                    {
-                        sb.Append(compressFunction(input.ReadToEnd()));
-                    }
-                    else
-                    {
-                        sb.Append(input.ReadToEnd());
-                    }
+                    sb.Append(input.ReadToEnd());
                 }
             }
             return addedFiles;
@@ -94,6 +121,9 @@ namespace SimpleCompression.Web
             context.Response.AddFileDependencies(allFiles.ToArray());
             context.Response.Cache.SetETagFromFileDependencies();
             context.Response.Cache.SetLastModifiedFromFileDependencies();
+//            context.Response.Cache.SetExpires(DateTime.Now.AddHours(12));
+            context.Response.Cache.SetSlidingExpiration(true);
+            context.Response.Cache.SetMaxAge(new TimeSpan(1));
         }
     }
 }

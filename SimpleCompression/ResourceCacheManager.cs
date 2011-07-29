@@ -28,12 +28,26 @@ namespace SimpleCompression
 
         internal void AddResourcesToCache(string cacheKey, Tuple<List<FileResource>, SimpleCompressionConfiguration> resourcesAndConfiguration)
         {
-            HttpContext.Current.Cache.Add(cacheKey, resourcesAndConfiguration, null, Cache.NoAbsoluteExpiration, Cache.NoSlidingExpiration, CacheItemPriority.NotRemovable, null);
+            cacheKey = "res_" + cacheKey;
+            HttpContext.Current.Cache.Add(cacheKey, resourcesAndConfiguration, null, Cache.NoAbsoluteExpiration, new TimeSpan(1, 0, 9), CacheItemPriority.NotRemovable, null);
         }
 
         internal Tuple<List<FileResource>, SimpleCompressionConfiguration> GetResourcesFromCache(string cacheKey)
         {
+            cacheKey = "res_" + cacheKey;
             return HttpContext.Current.Cache[cacheKey] as Tuple<List<FileResource>, SimpleCompressionConfiguration>;
+        }
+
+        internal void AddFileToCache(string cacheKey, string file)
+        {
+            cacheKey = "file_" + cacheKey;
+            HttpContext.Current.Cache.Add(cacheKey, file, null, Cache.NoAbsoluteExpiration, new TimeSpan(1, 0, 9), CacheItemPriority.NotRemovable, null);            
+        }
+
+        internal string GetFileFromCache(string cacheKey)
+        {
+            cacheKey = "file_" + cacheKey;
+            return HttpContext.Current.Cache[cacheKey] as string;
         }
     }
 }
