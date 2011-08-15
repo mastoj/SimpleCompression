@@ -54,7 +54,7 @@ namespace SimpleCompression.Mvc
                 var hashCode = fileResources.GetHashCode();
                 string extension = resourceType == ResourceType.Css ? ".css" : ".js";
                 string fileName = configuration.ClientVersionPrefix + "_" + hashCode + extension;
-                string filePath = configuration.FolderForCachedResources + fileName;
+                string filePath = "~/" + configuration.FolderForCachedResources + fileName;
                 ResourceCacheManager.Instance.AddResourcesToCache(fileName, new Tuple<List<FileResource>, SimpleCompressionConfiguration>(fileResources, configuration));
                 tagString = helper.PrintTag(filePath, printFunc);
             }
